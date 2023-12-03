@@ -1,91 +1,35 @@
-# three.js
+# 原神启动
 
-[![NPM Package][npm]][npm-url]
-[![Build Size][build-size]][build-size-url]
-[![NPM Downloads][npm-downloads]][npmtrends-url]
-[![DeepScan][deepscan]][deepscan-url]
-[![Discord][discord]][discord-url]
+> 免责声明：
+本网站是一个纯粹的技术示例，旨在展示和分享我们的技术能力。网站的设计和内容受到《原神》的启发，并尽可能地复制了《原神》的登录界面。我们对此表示敬意，并强调这个项目不是官方的《原神》产品，也没有与《原神》或其母公司miHoYo有任何关联。我们没有，也无意从这个项目中获得任何经济利益。这个网站的所有内容仅供学习和研究目的，以便让更多的人了解和熟悉webgl开发技术。
+如果miHoYo或任何有关方面认为这个项目侵犯了他们的权益，请联系我们，我们会立即采取行动。
 
-#### JavaScript 3D library
+## 简介
+视频介绍：[【超还原！three.js复刻原神启动，网页就能玩】](https://www.bilibili.com/video/BV1E8411v7xy/?share_source=copy_web&vd_source=a8feede4d26d2a3cfa4e68803fdd2c94)
 
-The aim of the project is to create an easy-to-use, lightweight, cross-browser, general-purpose 3D library. The current builds only include a WebGL renderer but WebGPU (experimental), SVG and CSS3D renderers are also available as addons.
+《原神启动》是一个基于xviewer.js开发的在线网站，本仓库包含了此项目的所有源码。前端开发我们也在摸索学习，不规范的地方欢迎大家指正。由于本网站与《原神》比较接近，大家切勿将本源码用于不正当用途！
 
-[Examples](https://threejs.org/examples/) &mdash;
-[Docs](https://threejs.org/docs/) &mdash;
-[Manual](https://threejs.org/manual/) &mdash;
-[Wiki](https://github.com/mrdoob/three.js/wiki) &mdash;
-[Migrating](https://github.com/mrdoob/three.js/wiki/Migration-Guide) &mdash;
-[Questions](https://stackoverflow.com/questions/tagged/three.js) &mdash;
-[Forum](https://discourse.threejs.org/) &mdash;
-[Discord](https://discord.gg/56GBJwAnUS)
+由于网站访问量比较大，免费的托管服务都不让用，我自己的服务器也因为被攻击暂时没有对外了，如果有云服务商愿意赞助将不胜感激。我们也会制作更多有趣的项目开源给大家。
 
-### Usage
+启动代码
 
-This code creates a scene, a camera, and a geometric cube, and it adds the cube to the scene. It then creates a `WebGL` renderer for the scene and camera, and it adds that viewport to the `document.body` element. Finally, it animates the cube within the scene for the camera.
-
-```javascript
-import * as THREE from 'three';
-
-const width = window.innerWidth, height = window.innerHeight;
-
-// init
-
-const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
-camera.position.z = 1;
-
-const scene = new THREE.Scene();
-
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshNormalMaterial();
-
-const mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
-
-const renderer = new THREE.WebGLRenderer( { antialias: true } );
-renderer.setSize( width, height );
-renderer.setAnimationLoop( animation );
-document.body.appendChild( renderer.domElement );
-
-// animation
-
-function animation( time ) {
-
-	mesh.rotation.x = time / 2000;
-	mesh.rotation.y = time / 1000;
-
-	renderer.render( scene, camera );
-
-}
+```js
+npm i
+npm start
 ```
+如果npm比较慢，可使用cnpm
 
-If everything goes well, you should see [this](https://jsfiddle.net/2nyxkmco/).
+## xviewer.js是什么
+xviewer.js是一个基于three.js的插件式渲染框架，它对three.js做了一层简洁优雅的封装，包含了大量实用的组件和插件，目标是让前端开发者能更简单地应用webgl技术。xviewer.js也会在近期开源，我们也在制作更多有趣的演示案例，欢迎大家关注我的b站账号。[【three.js实现水墨杭州迎亚运】](https://www.bilibili.com/video/BV1yG411Z7sw/?share_source=copy_web&vd_source=a8feede4d26d2a3cfa4e68803fdd2c94)也是基于xviewer.js开发的。
 
-### Cloning this repository
+## three.js教程
+制作教程是一件非常费时费力的事，所以我对所有愿意制作教程的博主给予敬意，以下是我比较推荐的内容
 
-Cloning the repo with all its history results in a ~2 GB download. If you don't need the whole history you can use the `depth` parameter to significantly reduce download size.
+官网手册：[Three.js Fundamentals](https://threejs.org/manual/#en/fundamentals)
 
-```sh
-git clone --depth=1 https://github.com/mrdoob/three.js.git
-```
+视频教程：[Three.js Journey](https://threejs-journey.com/)（b站有搬运）
 
-### Change log
+shader教程：[The Book of Shaders by Patricio Gonzalez Vivo & Jen Lowe](https://thebookofshaders.com/?lan=ch)
 
-[Releases](https://github.com/mrdoob/three.js/releases)
-
-
-[npm]: https://img.shields.io/npm/v/three
-[npm-url]: https://www.npmjs.com/package/three
-[build-size]: https://badgen.net/bundlephobia/minzip/three
-[build-size-url]: https://bundlephobia.com/result?p=three
-[npm-downloads]: https://img.shields.io/npm/dw/three
-[npmtrends-url]: https://www.npmtrends.com/three
-[deepscan]: https://deepscan.io/api/teams/16600/projects/19901/branches/525701/badge/grade.svg
-[deepscan-url]: https://deepscan.io/dashboard#view=project&tid=16600&pid=19901&bid=525701
-[discord]: https://img.shields.io/discord/685241246557667386
-[discord-url]: https://discord.gg/56GBJwAnUS
-
-# kokotaqi-byte.github.io
-# kokotaqi-byte.github.io
-# kokotaqi-byte.github.io
-# kokotaqi-byte.github.io
-# kokotaqi-threejs-test
+## 交流群
+暂无计划
